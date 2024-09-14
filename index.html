@@ -25,7 +25,7 @@
                 <!-- Rows will be added here dynamically -->
             </tbody>
         </table>
-        <button id="addLineupBtn" class="btn btn-info ml-2">Add Lineup</button>
+        <button id="addAllPlayersBtn" class="btn btn-info ml-2">Add All Players</button>
 
         <h1>Bench</h1>
         <table id="benchTable" class="table table-bordered">
@@ -144,10 +144,9 @@
                 });
             }
 
-            $('#addLineupBtn').click(function() {
+            $('#addAllPlayersBtn').click(function() {
                 const benchPlayers = $('#benchTable tbody tr').get();
-                const randomPlayers = benchPlayers.sort(() => 0.5 - Math.random()).slice(0, 11);
-                randomPlayers.forEach(row => {
+                benchPlayers.forEach(row => {
                     const playerName = $(row).children('td').eq(0).text();
                     addRow(playerName);
                     $(row).remove();
