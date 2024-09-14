@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Table with jQuery</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Player Scores</h1>
+    <table id="scoreTable">
+        <thead>
+            <tr>
+                <th>Player</th>
+                <th>Q1</th>
+                <th>Q2</th>
+                <th>Q3</th>
+                <th>Q4</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Rows will be added here dynamically -->
+        </tbody>
+    </table>
+    <button id="addRowBtn">Add Row</button>
+
+    <script>
+        $(document).ready(function() {
+            $('#addRowBtn').click(function() {
+                const newRow = $('<tr>');
+                for (let i = 0; i < 5; i++) {
+                    newRow.append('<td contenteditable="true"></td>');
+                }
+                const actionsCell = $('<td>');
+                const removeButton = $('<button>Remove</button>');
+                removeButton.click(function() {
+                    $(this).closest('tr').remove();
+                });
+                actionsCell.append(removeButton);
+                newRow.append(actionsCell);
+                $('#scoreTable tbody').append(newRow);
+            });
+        });
+    </script>
+</body>
+</html>
